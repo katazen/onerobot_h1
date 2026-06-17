@@ -1,0 +1,24 @@
+README.md
+  s_29c9e407e3e440::t_e922564d9bf6ac 1,3-4,6-7,9,11-22,24,26-36,38,40-41,44,47,50-51,53-54,56-57,59-60,63,65-69
+source/h1_reach/h1_reach/assets/mjcf/A1_dual/a1_dual_raw.xml
+  s_29c9e407e3e440::t_3e6d770dea8093 1-116
+source/h1_reach/h1_reach/assets/mjcf/A1_dual/a1_dual.xml
+  s_29c9e407e3e440::t_013b3dbdcc1210 27,29
+  s_29c9e407e3e440::t_3e6d770dea8093 1-26,28,30-136
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "b060df94bbdeb7d05f7fb2ef2e648d180c4d8ba2",
+  "prompts": {},
+  "sessions": {
+    "s_29c9e407e3e440": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2ccd806e-6316-4dac-a246-71bbbdb09eb4",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "woan <377801872@qq.com>"
+    }
+  }
+}
