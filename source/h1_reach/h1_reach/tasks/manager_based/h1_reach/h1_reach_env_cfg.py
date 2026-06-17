@@ -3,151 +3,19 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-import math
-
-import isaaclab.sim as sim_utils
-from isaaclab.assets import ArticulationCfg, AssetBaseCfg
-from isaaclab.envs import ManagerBasedRLEnvCfg
-from isaaclab.managers import EventTermCfg as EventTerm
-from isaaclab.managers import ObservationGroupCfg as ObsGroup
 from isaaclab.managers import ObservationTermCfg as ObsTerm
 from isaaclab.managers import RewardTermCfg as RewTerm
 from isaaclab.managers import SceneEntityCfg
-from isaaclab.managers import TerminationTermCfg as DoneTerm
-from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.utils import configclass
+
+from isaaclab_tasks.manager_based.manipulation.reach.reach_env_cfg import ReachEnvCfg
 
 from . import mdp
 
 ##
 # Pre-defined configs
 ##
-
-from isaaclab_assets.robots.cartpole import CARTPOLE_CFG  # isort:skip
-
-
-##
-# Scene definition
-##
-
-
-@configclass
-class H1ReachSceneCfg(InteractiveSceneCfg):
-    """Configuration for a cart-pole scene."""
-
-    # ground plane
-    ground = AssetBaseCfg(
-        prim_path="/World/ground",
-        spawn=sim_utils.GroundPlaneCfg(size=(100.0, 100.0)),
-    )
-
-    # robot
-    robot: ArticulationCfg = CARTPOLE_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
-
-    # lights
-    dome_light = AssetBaseCfg(
-        prim_path="/World/DomeLight",
-        spawn=sim_utils.DomeLightCfg(color=(0.9, 0.9, 0.9), intensity=500.0),
-    )
-
-
-##
-# MDP settings
-##
-
-
-@configclass
-class ActionsCfg:
-    """Action specifications for the MDP."""
-
-    joint_effort = mdp.JointEffortActionCfg(asset_name="robot", joint_names=["slider_to_cart"], scale=100.0)
-
-
-@configclass
-class ObservationsCfg:
-    """Observation specifications for the MDP."""
-
-    @configclass
-    class PolicyCfg(ObsGroup):
-        """Observations for policy group."""
-
-        # observation terms (order preserved)
-        joint_pos_rel = ObsTerm(func=mdp.joint_pos_rel)
-        joint_vel_rel = ObsTerm(func=mdp.joint_vel_rel)
-
-        def __post_init__(self) -> None:
-            self.enable_corruption = False
-            self.concatenate_terms = True
-
-    # observation groups
-    policy: PolicyCfg = PolicyCfg()
-
-
-@configclass
-class EventCfg:
-    """Configuration for events."""
-
-    # reset
-    reset_cart_position = EventTerm(
-        func=mdp.reset_joints_by_offset,
-        mode="reset",
-        params={
-            "asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]),
-            "position_range": (-1.0, 1.0),
-            "velocity_range": (-0.5, 0.5),
-        },
-    )
-
-    reset_pole_position = EventTerm(
-        func=mdp.reset_joints_by_offset,
-        mode="reset",
-        params={
-            "asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]),
-            "position_range": (-0.25 * math.pi, 0.25 * math.pi),
-            "velocity_range": (-0.25 * math.pi, 0.25 * math.pi),
-        },
-    )
-
-
-@configclass
-class RewardsCfg:
-    """Reward terms for the MDP."""
-
-    # (1) Constant running reward
-    alive = RewTerm(func=mdp.is_alive, weight=1.0)
-    # (2) Failure penalty
-    terminating = RewTerm(func=mdp.is_terminated, weight=-2.0)
-    # (3) Primary task: keep pole upright
-    pole_pos = RewTerm(
-        func=mdp.joint_pos_target_l2,
-        weight=-1.0,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]), "target": 0.0},
-    )
-    # (4) Shaping tasks: lower cart velocity
-    cart_vel = RewTerm(
-        func=mdp.joint_vel_l1,
-        weight=-0.01,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"])},
-    )
-    # (5) Shaping tasks: lower pole angular velocity
-    pole_vel = RewTerm(
-        func=mdp.joint_vel_l1,
-        weight=-0.005,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"])},
-    )
-
-
-@configclass
-class TerminationsCfg:
-    """Termination terms for the MDP."""
-
-    # (1) Time out
-    time_out = DoneTerm(func=mdp.time_out, time_out=True)
-    # (2) Cart out of bounds
-    cart_out_of_bounds = DoneTerm(
-        func=mdp.joint_pos_out_of_manual_limit,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["slider_to_cart"]), "bounds": (-3.0, 3.0)},
-    )
+from h1_reach.robots import A1_RIGHT_CFG  # isort: skip
 
 
 ##
@@ -156,25 +24,88 @@ class TerminationsCfg:
 
 
 @configclass
-class H1ReachEnvCfg(ManagerBasedRLEnvCfg):
-    # Scene settings
-    scene: H1ReachSceneCfg = H1ReachSceneCfg(num_envs=4096, env_spacing=4.0)
-    # Basic settings
-    observations: ObservationsCfg = ObservationsCfg()
-    actions: ActionsCfg = ActionsCfg()
-    events: EventCfg = EventCfg()
-    # MDP settings
-    rewards: RewardsCfg = RewardsCfg()
-    terminations: TerminationsCfg = TerminationsCfg()
+class H1ReachEnvCfg(ReachEnvCfg):
+    def __post_init__(self):
+        # post init of parent
+        super().__post_init__()
 
-    # Post initialization
-    def __post_init__(self) -> None:
-        """Post initialization."""
-        # general settings
-        self.decimation = 2
-        self.episode_length_s = 5
-        # viewer settings
-        self.viewer.eye = (8.0, 0.0, 5.0)
-        # simulation settings
-        self.sim.dt = 1 / 120
-        self.sim.render_interval = self.decimation
+        # switch robot to the A1 right arm
+        self.scene.robot = A1_RIGHT_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
+        # override rewards
+        self.rewards.end_effector_position_tracking.params["asset_cfg"].body_names = ["Link7"]
+        self.rewards.end_effector_position_tracking_fine_grained.params["asset_cfg"].body_names = ["Link7"]
+        self.rewards.end_effector_orientation_tracking.params["asset_cfg"].body_names = ["Link7"]
+        # override actions
+        self.actions.arm_action = mdp.JointPositionActionCfg(
+            asset_name="robot", joint_names=["joint.*"], scale=0.5, use_default_offset=True
+        )
+        # replace the cartesian-box pose command with one that samples random joint configs and
+        # forward-kinematics them to the end-effector pose. Every target is reachable by construction.
+        self.commands.ee_pose = mdp.FkReachablePoseCommandCfg(
+            asset_name="robot",
+            body_name="Link7",
+            chain=mdp.A1_RIGHT_CHAIN,
+            joint_range_scale=0.8,
+            resampling_time_range=(4.0, 4.0),
+            make_quat_unique=False,
+            debug_vis=True,
+            # ranges are unused (the command is generated by FK), but the base cfg requires them
+            ranges=mdp.FkReachablePoseCommandCfg.Ranges(
+                pos_x=(0.0, 0.0),
+                pos_y=(0.0, 0.0),
+                pos_z=(0.0, 0.0),
+                roll=(0.0, 0.0),
+                pitch=(0.0, 0.0),
+                yaw=(0.0, 0.0),
+            ),
+        )
+
+        # Reward shaping for joint position+orientation tracking.
+        # Keep the two linear penalties for far-range gradient...
+        self.rewards.end_effector_position_tracking.weight = -0.5
+        self.rewards.end_effector_orientation_tracking.weight = -0.3
+        # ...but replace the separate fine-grained terms with multiplicative ones, so the policy
+        # only earns the reward when BOTH position and orientation are close (prevents it from
+        # maximizing one objective while ignoring the other). Two scales: a coarse term whose basin
+        # covers the operating region (provides gradient from far out) and a fine term that sharpens
+        # the last few cm/degrees.
+        self.rewards.end_effector_position_tracking_fine_grained = None
+        self.rewards.end_effector_pose_tracking_coarse = RewTerm(
+            func=mdp.pose_command_error_tanh,
+            weight=0.5,
+            params={
+                "asset_cfg": SceneEntityCfg("robot", body_names=["Link7"]),
+                "pos_std": 0.25,
+                "ori_std": 0.5,
+                "command_name": "ee_pose",
+            },
+        )
+        self.rewards.end_effector_pose_tracking_fine = RewTerm(
+            func=mdp.pose_command_error_tanh,
+            weight=0.5,
+            params={
+                "asset_cfg": SceneEntityCfg("robot", body_names=["Link7"]),
+                "pos_std": 0.05,
+                "ori_std": 0.1,
+                "command_name": "ee_pose",
+            },
+        )
+
+        # feed the end-effector tracking error (in base frame) into the policy observation, so it
+        # can close its own control loop instead of inferring the EE pose from joint angles.
+        self.observations.policy.ee_pose_error = ObsTerm(
+            func=mdp.ee_pose_error_b,
+            params={"asset_cfg": SceneEntityCfg("robot", body_names=["Link7"]), "command_name": "ee_pose"},
+        )
+
+
+@configclass
+class H1ReachEnvCfg_PLAY(H1ReachEnvCfg):
+    def __post_init__(self):
+        # post init of parent
+        super().__post_init__()
+        # make a smaller scene for play
+        self.scene.num_envs = 50
+        self.scene.env_spacing = 2.5
+        # disable randomization for play
+        self.observations.policy.enable_corruption = False
