@@ -1,0 +1,71 @@
+source/h1_reach/h1_reach/robots/a1.py
+  s_29c9e407e3e440::t_514cffa938107c 1-19,21-37,39-47,54,67-71
+  s_29c9e407e3e440::t_7e373d134c17da 48-51
+  s_29c9e407e3e440::t_3d30b38dd279bd 38,52-53,55-57,59-65
+  s_29c9e407e3e440::t_4affe62da0e4a3 58,66
+  h_d698c05df35737 20
+source/h1_reach/h1_reach/tasks/manager_based/h1_reach/agents/rsl_rl_ppo_cfg.py
+  s_29c9e407e3e440::t_e8b604c4dcaec0 22-23
+  s_29c9e407e3e440::t_5d4e256f270b7c 13,16-17,30-31,39
+  s_29c9e407e3e440::t_7bc471b7c56d35 14
+source/h1_reach/h1_reach/tasks/manager_based/h1_reach/__init__.py
+  s_29c9e407e3e440::t_f123d1bd0e6a6f 16,23-33
+source/h1_reach/h1_reach/tasks/manager_based/h1_reach/mdp/rewards.py
+  s_29c9e407e3e440::t_053a7063dad7e6 1,12,20-30
+  s_29c9e407e3e440::t_378c29c74b1867 14,31-50
+source/h1_reach/h1_reach/tasks/manager_based/h1_reach/mdp/observations.py
+  s_29c9e407e3e440::t_909dccecb95e29 1-40
+scripts/sim2sim.py
+  s_29c9e407e3e440::t_efda2425d046e7 79
+  s_29c9e407e3e440::t_e77dd228339918 98-100
+  s_29c9e407e3e440::t_4ebcc33871f196 38-39
+  s_29c9e407e3e440::t_cbb6cb06f94566 3,5-8,11-13,45-49,54-55,65,76-78,80-92,111,113,118,120-121,133,137-152,172-173,176,179-198,208,216,218
+  s_29c9e407e3e440::t_8c01e154181e2a 34
+  s_29c9e407e3e440::t_38035454566306 50-53
+  s_29c9e407e3e440::t_949fd7007b8fe4 30-33
+  s_29c9e407e3e440::t_4ffb48b5a35266 1-2,4,9-10,14-29,35-37,40,42-44,56-64,66-75,93-97,101-110,112,114-117,119,122-132,134-136,155-171,174-175,177-178,199-207,209-215,217,219-226
+  s_29c9e407e3e440::t_7c3cf3e117dbc3 153-154
+  h_d698c05df35737 41
+source/h1_reach/h1_reach/tasks/manager_based/h1_reach/mdp/fk_pose_command.py
+  s_29c9e407e3e440::t_5bda818249ee83 1-111
+docs/sim2sim.md
+  s_29c9e407e3e440::t_e1a6cced8a5c29 1-96
+source/h1_reach/h1_reach/robots/__init__.py
+  s_29c9e407e3e440::t_3ada68097edd9c 1-8
+source/h1_reach/h1_reach/tasks/manager_based/h1_reach/h1_reach_env_cfg.py
+  s_29c9e407e3e440::t_4f29fb1a3eef49 76-77,90-92
+  s_29c9e407e3e440::t_b6deec585fc0c7 63-64,66,72,74-75
+  s_29c9e407e3e440::t_1f1c5ba6c270a2 11,18,22,27-41,103-111
+  s_29c9e407e3e440::t_a296534a2e0d93 12
+  s_29c9e407e3e440::t_22a47db799479a 42-47,49-62,65
+  s_29c9e407e3e440::t_5b19b71dbf9a9f 94-99
+  s_29c9e407e3e440::t_5ce5af6ae362e6 67-71,73,78-89
+  s_29c9e407e3e440::t_1de15497ffadcb 48
+source/h1_reach/h1_reach/tasks/manager_based/h1_reach/mdp/__init__.py
+  s_29c9e407e3e440::t_c3539d1f3a8837 10
+  s_29c9e407e3e440::t_adca49d371319a 8
+  s_29c9e407e3e440::t_ad54ece3f4f12d 6
+  s_29c9e407e3e440::t_82390d190a5b35 12
+  s_29c9e407e3e440::t_557d9627ed06b8 11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "6e239ae1f0b97e720aa92228f832ef0bd311cf5c",
+  "prompts": {},
+  "humans": {
+    "h_d698c05df35737": {
+      "author": "woan <377801872@qq.com>"
+    }
+  },
+  "sessions": {
+    "s_29c9e407e3e440": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2ccd806e-6316-4dac-a246-71bbbdb09eb4",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "woan <377801872@qq.com>"
+    }
+  }
+}
