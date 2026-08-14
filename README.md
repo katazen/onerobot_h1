@@ -6,17 +6,17 @@
 
 *OneRobotics A1 at the all-joint-zero pose in the Isaac Lab reach environment.*
 
-> This repository is the current external Isaac Lab implementation of the OneRobotics A1 robotic arm and is being prepared as a candidate upstream contribution. No proposal attachment or pull request containing the physical assets will be submitted until their redistribution rights are confirmed in writing.
+> This repository is the current external Isaac Lab implementation of the OneRobotics A1 robotic arm and is being prepared as a candidate upstream contribution to the Isaac Lab project.
 
 The repository provides an Isaac Lab articulation configuration, a manager-based end-effector reach task, RSL-RL training and playback scripts, and a MuJoCo sim-to-sim validation path. It is not an official Isaac Lab asset or task.
 
 ## Project status
 
-- The proposed upstream scope is the **OneRobotics A1 robot asset and Isaac Lab articulation configuration**, subject to written clearance of the asset redistribution rights.
+- The proposed upstream scope is the **OneRobotics A1 robot asset and Isaac Lab articulation configuration**.
 - The reach task is validation material; maintainers may choose not to include it upstream.
 - Final placement in `isaaclab_contrib`, `isaaclab_assets`, or another package has not been decided.
 - The legacy `h1_reach` package name and `Template-A1-Reach-*` Gym IDs are intentionally retained during Phase 1 to avoid breaking existing users.
-- An authentic Isaac Lab render is included above. It is derived from the same `REVIEW_REQUIRED` physical asset set and does not change the asset-license status.
+- An authentic Isaac Lab render is included above. The underlying OneRobotics A1 model is covered by the asset license described below; third-party Isaac Lab/Isaac Sim scene elements in the screenshot remain subject to their own terms.
 
 ## Features
 
@@ -120,12 +120,16 @@ The `robots/a1.py` module does not import reach-task code. The legacy top-level 
 
 ## Licensing
 
-The Python/code package metadata uses BSD-3-Clause, consistent with the root [`LICENSE`](LICENSE). The root license currently names **万昕**, not OneRobotics, as its copyright holder; this cleanup does not change that statement. Files copied or substantially derived from Isaac Lab retain their existing Isaac Lab Project Developers copyright and BSD-3-Clause SPDX notices. See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+This repository uses a clear code-and-assets license split:
 
-The physical robot assets do **not** currently have a confirmed redistribution-license scope. Their status is `REVIEW_REQUIRED`; the repository-level code license must not be interpreted as an asset license. See [`ASSET_LICENSE_STATUS.md`](ASSET_LICENSE_STATUS.md) before redistributing URDF, MJCF/XML, STL, or converted USD assets.
+- **Python and other project code:** BSD-3-Clause, `Copyright (c) 2026, OneRobotics`; see [`LICENSE`](LICENSE).
+- **OneRobotics A1 robot assets:** CC BY 4.0, `Copyright © 2026 OneRobotics`. This scope includes the listed URDF, MJCF/XML and STL files and covered USD conversions published by OneRobotics from them. Attribution and an indication of changes are required; see [`ASSET_LICENSE_STATUS.md`](ASSET_LICENSE_STATUS.md) and the full [`CC BY 4.0 license text`](LICENSES/CC-BY-4.0.txt).
+- **Isaac Lab-derived files:** retained upstream Isaac Lab Project Developers copyright and BSD-3-Clause notices; see [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+
+Recommended asset attribution: `OneRobotics A1 robot assets © 2026 OneRobotics, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Source: https://github.com/katazen/onerobot_h1. Changes: none.` Replace `none` with a short description when redistributing modified assets.
 
 ## Upstream contribution
 
-After the physical-asset redistribution rights are confirmed in writing, the next step is a Proposal issue asking the Isaac Lab maintainers to confirm package placement and whether the assets should move to a dedicated OneRobotics repository. No upstream directory layout, package rename, hosted asset URL, or final PR structure is assumed here. Do not publish an asset-bearing wheel, release, proposal attachment, or pull request while the asset status remains `REVIEW_REQUIRED`.
+The next step is a Proposal issue asking the Isaac Lab maintainers to confirm package placement and whether the assets should move to a dedicated OneRobotics repository. No upstream directory layout, package rename, hosted asset URL, or final PR structure is assumed here.
 
-See [`OPEN_SOURCE_PREP.md`](OPEN_SOURCE_PREP.md) for the Phase 1 audit, test results, unresolved licensing work, and the Phase 2 plan.
+See [`OPEN_SOURCE_PREP.md`](OPEN_SOURCE_PREP.md) for the Phase 1 audit, test results, licensing record, and the Phase 2 plan.
