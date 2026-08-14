@@ -1,0 +1,102 @@
+.gitattributes
+  s_78ba1b257c5b02::t_3197e2e3264be2 14-16
+.pre-commit-config.yaml
+  s_78ba1b257c5b02::t_19455625e65972 19,30
+source/h1_reach/config/extension.toml
+  s_78ba1b257c5b02::t_d81a4bee413779 8,10-15
+scripts/sim2sim.py
+  s_78ba1b257c5b02::t_ac5335c8485072 9,39-40,55,58-66,69-73,80,83-99,112-114,123,126-127,205-206,211-214,267-272,281
+  s_78ba1b257c5b02::t_54770f98fddd73 15,18,20,27-28,34-35,120,124-125,128-129,131,135,258-266,273-276,278-280,282
+source/h1_reach/h1_reach/robots/a1.py
+  s_78ba1b257c5b02::t_5afcb2a09e93e6 6,8,11-12,15,21-22,25-28,75
+  s_78ba1b257c5b02::t_bd71e5e4974328 39,41-47,57,65
+source/h1_reach/h1_reach/tasks/manager_based/h1_reach/mdp/observations.py
+  s_78ba1b257c5b02::t_b9e776c623b95c 24-25
+  s_78ba1b257c5b02::t_8919b330b0c245 33-36
+source/h1_reach/MANIFEST.in
+  s_78ba1b257c5b02::t_d81a4bee413779 1
+source/h1_reach/h1_reach/tasks/manager_based/h1_reach/mdp/rewards.py
+  s_78ba1b257c5b02::t_8919b330b0c245 27-28,45,48-49
+THIRD_PARTY_NOTICES.md
+  s_78ba1b257c5b02::t_37967d4792c0b0 1-8,10,12,14-20,22-23
+  s_78ba1b257c5b02::t_41470d858dc10f 9,11,13,21
+source/h1_reach/h1_reach/tasks/manager_based/h1_reach/agents/__init__.py
+  s_78ba1b257c5b02::t_19455625e65972 4
+source/h1_reach/docs/CHANGELOG.rst
+  s_78ba1b257c5b02::t_6d1db4c7f09dcd 10
+source/h1_reach/h1_reach/tasks/manager_based/h1_reach/mdp/__init__.py
+  s_78ba1b257c5b02::t_9bf6326ee86207 6,8,10-12
+LICENSES/IsaacLab-BSD-3-Clause.txt
+  s_78ba1b257c5b02::t_41470d858dc10f 1-30
+README.md
+  s_78ba1b257c5b02::t_f5c23e0ec31139 5
+  s_78ba1b257c5b02::t_6e5075c589b99a 9
+  s_78ba1b257c5b02::t_e8a0286e94c1fd 1,3,11-14,16-18,23-29,31,33-40,42-46,50,53-54,58-62,66-83,85,87,89-93,99-118,120-127,131
+  s_78ba1b257c5b02::t_ac5335c8485072 94-95,98
+  s_78ba1b257c5b02::t_8f499307ea6417 6-8,19
+  s_78ba1b257c5b02::t_41470d858dc10f 15,41,129
+  s_78ba1b257c5b02::t_66a5f725a35e7d 119
+  s_78ba1b257c5b02::t_0a1f440708e212 10,128
+scripts/rsl_rl/train.py
+  s_78ba1b257c5b02::t_8919b330b0c245 62
+OPEN_SOURCE_PREP.md
+  s_78ba1b257c5b02::t_7f95749b1c7fad 29
+  s_78ba1b257c5b02::t_f5c23e0ec31139 88
+  s_78ba1b257c5b02::t_d581d93f795824 1-2,7-28,31-34,36-47,49-74,76-87,89-115,117-119,121-125,127-128,130-138,140-148
+  s_78ba1b257c5b02::t_80646a710832d2 35,75
+  s_78ba1b257c5b02::t_d7e5ccb407a4a5 120
+  s_78ba1b257c5b02::t_e801bbf4efac2e 48
+  s_78ba1b257c5b02::t_daa4c9fbfed5f8 3-6
+  s_78ba1b257c5b02::t_222e971e269001 30
+  s_78ba1b257c5b02::t_4ddcb6a3ccc1dd 116
+  s_78ba1b257c5b02::t_077045d3f773ac 126
+  s_78ba1b257c5b02::t_7874e85764e0a7 150-182,184-186
+  s_78ba1b257c5b02::t_8f499307ea6417 129,139,149
+  s_78ba1b257c5b02::t_8123fcb9a42762 183
+  s_78ba1b257c5b02::t_d5af37e9b2baa5 187
+source/h1_reach/h1_reach/tasks/manager_based/h1_reach/mdp/fk_pose_command.py
+  s_78ba1b257c5b02::t_8919b330b0c245 87
+  s_78ba1b257c5b02::t_bd71e5e4974328 21,36-42
+  s_78ba1b257c5b02::t_b9e776c623b95c 74
+  s_78ba1b257c5b02::t_5afcb2a09e93e6 23,33
+  s_78ba1b257c5b02::t_067c9704ab8292 22
+source/h1_reach/h1_reach/__init__.py
+  s_78ba1b257c5b02::t_5afcb2a09e93e6 6
+source/h1_reach/h1_reach/tasks/manager_based/h1_reach/h1_reach_env_cfg.py
+  s_78ba1b257c5b02::t_bd71e5e4974328 35-37,40,46,77,87,98
+scripts/list_envs.py
+  s_78ba1b257c5b02::t_5afcb2a09e93e6 12-13
+ASSET_LICENSE_STATUS.md
+  s_78ba1b257c5b02::t_6b5ebecad444db 24
+  s_78ba1b257c5b02::t_daa4c9fbfed5f8 3-6
+  s_78ba1b257c5b02::t_6e5075c589b99a 15
+  s_78ba1b257c5b02::t_41470d858dc10f 19,68-70
+  s_78ba1b257c5b02::t_37967d4792c0b0 1-2,7-14,16-18,20-23,25-67,71-82
+source/h1_reach/setup.py
+  s_78ba1b257c5b02::t_d81a4bee413779 11,21,28-29,31-36,39-40,43
+pyproject.toml
+  s_78ba1b257c5b02::t_16848d2bd55f3b 58
+  s_78ba1b257c5b02::t_d81a4bee413779 75,117
+source/h1_reach/h1_reach/assets/urdf/A1/a1_left.urdf
+  s_78ba1b257c5b02::t_e07388c751be15 44,58,84,98,142,156,200,214,258,272,316,330,374,388,432,446
+source/h1_reach/h1_reach/assets/urdf/A1/a1_right.urdf
+  s_78ba1b257c5b02::t_cf5b37d843978b 32,46,72,86,130,144,188,202,246,260,304,318,362,376,420,434
+source/h1_reach/h1_reach/assets/urdf/A1_dual/A1_dual.urdf
+  s_78ba1b257c5b02::t_2710bae59d0639 43,57,83,97,136,150,194,208,252,266,310,324,368,382,426,440,484,498,542,556,595,609,653,667,711,725,769,783,827,841,885,899,943,957
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "caa9fce93bf0fce249bfdf6c3478c03ab5e707ac",
+  "prompts": {},
+  "sessions": {
+    "s_78ba1b257c5b02": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ff3dd-1129-7532-93c2-20b9cb1872a5",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "T1Amoo <menxlee@gmail.com>"
+    }
+  }
+}
