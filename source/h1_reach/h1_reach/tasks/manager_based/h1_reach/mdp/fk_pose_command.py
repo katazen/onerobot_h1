@@ -14,13 +14,13 @@ therefore reachable in both position and orientation by construction.
 from __future__ import annotations
 
 import math
-import torch
 from collections.abc import Sequence
 from dataclasses import MISSING
 from typing import TYPE_CHECKING
 
-from isaaclab.envs.mdp.commands.pose_command import UniformPoseCommand
-from isaaclab.envs.mdp.commands.commands_cfg import UniformPoseCommandCfg
+import torch
+
+from isaaclab.envs.mdp.commands import UniformPoseCommand, UniformPoseCommandCfg
 from isaaclab.utils import configclass
 from isaaclab.utils.math import quat_from_matrix
 
@@ -30,16 +30,16 @@ if TYPE_CHECKING:
 
 # Kinematic chain of the A1 right arm, in order base_link -> Link1 -> ... -> Link7.
 # Each entry is (joint_name_pattern, origin_xyz, origin_rpy). All joint axes are +z.
-# Source: robot_assets/onero_description/urdf/A1/a1_right.urdf
+# Source: h1_reach/assets/urdf/A1/a1_right.urdf
 _HALF_PI = math.pi / 2.0
 A1_RIGHT_CHAIN = [
-    ("joint1.*", (0.0, 0.0, 0.0315), (0.0, 0.0, 0.0)),
-    ("joint2.*", (0.0, 0.0, 0.12745), (_HALF_PI, _HALF_PI, 0.0)),
-    ("joint3.*", (0.0, -0.09325, 0.0), (_HALF_PI, -_HALF_PI, 0.0)),
-    ("joint4.*", (0.0, 0.001, 0.14025), (-_HALF_PI, 0.0, 0.0)),
-    ("joint5.*", (0.0, -0.088, -0.001), (_HALF_PI, 0.0, 0.0)),
-    ("joint6.*", (0.0, -0.0005, 0.133), (_HALF_PI, 0.0, 0.0)),
-    ("joint7.*", (0.0, 0.112, -0.0005), (_HALF_PI, 0.0, math.pi)),
+    (".*joint1.*", (0.0, 0.0, 0.0315), (0.0, 0.0, 0.0)),
+    (".*joint2.*", (0.0, 0.0, 0.12745), (_HALF_PI, _HALF_PI, 0.0)),
+    (".*joint3.*", (0.0, -0.09325, 0.0), (_HALF_PI, -_HALF_PI, 0.0)),
+    (".*joint4.*", (0.0, 0.001, 0.14025), (-_HALF_PI, 0.0, 0.0)),
+    (".*joint5.*", (0.0, -0.088, -0.001), (_HALF_PI, 0.0, 0.0)),
+    (".*joint6.*", (0.0, -0.0005, 0.133), (_HALF_PI, 0.0, 0.0)),
+    (".*joint7.*", (0.0, 0.112, -0.0005), (_HALF_PI, 0.0, math.pi)),
 ]
 
 
@@ -71,7 +71,7 @@ class FkReachablePoseCommand(UniformPoseCommand):
         self._origins = origins.to(self.device)  # (num_joints, 4, 4)
 
     def _fk(self, q: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
-        """Forward kinematics of Link7 in the base frame. q: (n, num_joints) -> pos (n,3), quat (n,4) wxyz."""
+        """Return Link7 FK in the base frame using Isaac Lab's native quaternion layout (beta2: xyzw)."""
         n = q.shape[0]
         t = torch.eye(4, device=self.device).expand(n, 4, 4).contiguous()
         rz = torch.eye(4, device=self.device).expand(n, 4, 4).contiguous()
@@ -84,7 +84,7 @@ class FkReachablePoseCommand(UniformPoseCommand):
 
     def _resample_command(self, env_ids: Sequence[int]):
         # joint limits for the chain joints (assume identical across envs)
-        limits = self.robot.data.joint_pos_limits[0, self._chain_joint_ids]  # (num_joints, 2)
+        limits = self.robot.data.joint_pos_limits.torch[0, self._chain_joint_ids]  # (num_joints, 2)
         lower, upper = limits[:, 0], limits[:, 1]
         # optionally shrink toward the center of the range
         center = 0.5 * (lower + upper)

@@ -24,8 +24,8 @@ def orientation_command_error_tanh(
     asset: RigidObject = env.scene[asset_cfg.name]
     command = env.command_manager.get_command(command_name)
     des_quat_b = command[:, 3:7]
-    des_quat_w = quat_mul(asset.data.root_quat_w, des_quat_b)
-    curr_quat_w = asset.data.body_quat_w[:, asset_cfg.body_ids[0]]  # type: ignore
+    des_quat_w = quat_mul(asset.data.root_quat_w.torch, des_quat_b)
+    curr_quat_w = asset.data.body_quat_w.torch[:, asset_cfg.body_ids[0]]  # type: ignore
     error = quat_error_magnitude(curr_quat_w, des_quat_w)
     return 1 - torch.tanh(error / std)
 
@@ -42,9 +42,9 @@ def pose_command_error_tanh(
     command = env.command_manager.get_command(command_name)
     # position error in world frame
     des_pos_w, des_quat_w = combine_frame_transforms(
-        asset.data.root_pos_w, asset.data.root_quat_w, command[:, :3], command[:, 3:7]
+        asset.data.root_pos_w.torch, asset.data.root_quat_w.torch, command[:, :3], command[:, 3:7]
     )
     body_id = asset_cfg.body_ids[0]  # type: ignore
-    pos_error = torch.norm(asset.data.body_pos_w[:, body_id] - des_pos_w, dim=1)
-    ori_error = quat_error_magnitude(asset.data.body_quat_w[:, body_id], des_quat_w)
+    pos_error = torch.norm(asset.data.body_pos_w.torch[:, body_id] - des_pos_w, dim=1)
+    ori_error = quat_error_magnitude(asset.data.body_quat_w.torch[:, body_id], des_quat_w)
     return (1 - torch.tanh(pos_error / pos_std)) * (1 - torch.tanh(ori_error / ori_std))

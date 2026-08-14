@@ -11,4 +11,7 @@
 *.jit filter=lfs diff=lfs merge=lfs -text
 *.hdf5 filter=lfs diff=lfs merge=lfs -text
 
+# The legacy dual-arm URDF uses CRLF line endings; treat CR as part of EOL in whitespace checks.
+*.urdf whitespace=cr-at-eol
+
 *.bat text eol=crlf

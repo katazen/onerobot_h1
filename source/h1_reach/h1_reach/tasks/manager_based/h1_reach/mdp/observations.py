@@ -21,8 +21,8 @@ def ee_pose_error_b(env: ManagerBasedRLEnv, command_name: str, asset_cfg: SceneE
     """End-effector pose error w.r.t. the commanded pose, in the robot base frame.
 
     Returns a (num_envs, 7) tensor: position error (3) followed by the orientation error
-    quaternion (4, wxyz). Giving the policy its own tracking error closes the control loop and
-    typically improves tracking precision a lot.
+    quaternion in Isaac Lab's native layout (4; beta2: xyzw). Giving the policy its own tracking
+    error closes the control loop and typically improves tracking precision a lot.
     """
     asset: RigidObject = env.scene[asset_cfg.name]
     command = env.command_manager.get_command(command_name)  # target pose in base frame (N, 7)
@@ -30,10 +30,10 @@ def ee_pose_error_b(env: ManagerBasedRLEnv, command_name: str, asset_cfg: SceneE
     # current end-effector pose expressed in the base frame
     body_id = asset_cfg.body_ids[0]  # type: ignore
     curr_pos_b, curr_quat_b = subtract_frame_transforms(
-        asset.data.root_pos_w,
-        asset.data.root_quat_w,
-        asset.data.body_pos_w[:, body_id],
-        asset.data.body_quat_w[:, body_id],
+        asset.data.root_pos_w.torch,
+        asset.data.root_quat_w.torch,
+        asset.data.body_pos_w.torch[:, body_id],
+        asset.data.body_quat_w.torch[:, body_id],
     )
     pos_error = des_pos_b - curr_pos_b
     quat_error = quat_mul(des_quat_b, quat_conjugate(curr_quat_b))

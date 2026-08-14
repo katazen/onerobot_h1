@@ -7,4 +7,4 @@ Changelog
 Added
 ^^^^^
 
-* Created an initial template for building an extension or project based on Isaac Lab
+* Added the external Isaac Lab integration and reach-task validation for the OneRobotics A1 arm

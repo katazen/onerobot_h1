@@ -32,18 +32,18 @@ class H1ReachEnvCfg(ReachEnvCfg):
         # switch robot to the A1 right arm
         self.scene.robot = A1_RIGHT_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
         # override rewards
-        self.rewards.end_effector_position_tracking.params["asset_cfg"].body_names = ["Link7"]
-        self.rewards.end_effector_position_tracking_fine_grained.params["asset_cfg"].body_names = ["Link7"]
-        self.rewards.end_effector_orientation_tracking.params["asset_cfg"].body_names = ["Link7"]
+        self.rewards.end_effector_position_tracking.params["asset_cfg"].body_names = [".*Link7.*"]
+        self.rewards.end_effector_position_tracking_fine_grained.params["asset_cfg"].body_names = [".*Link7.*"]
+        self.rewards.end_effector_orientation_tracking.params["asset_cfg"].body_names = [".*Link7.*"]
         # override actions
         self.actions.arm_action = mdp.JointPositionActionCfg(
-            asset_name="robot", joint_names=["joint.*"], scale=0.5, use_default_offset=True
+            asset_name="robot", joint_names=[".*joint.*"], scale=0.5, use_default_offset=True
         )
         # replace the cartesian-box pose command with one that samples random joint configs and
         # forward-kinematics them to the end-effector pose. Every target is reachable by construction.
         self.commands.ee_pose = mdp.FkReachablePoseCommandCfg(
             asset_name="robot",
-            body_name="Link7",
+            body_name=".*Link7.*",
             chain=mdp.A1_RIGHT_CHAIN,
             joint_range_scale=0.8,
             resampling_time_range=(4.0, 4.0),
@@ -74,7 +74,7 @@ class H1ReachEnvCfg(ReachEnvCfg):
             func=mdp.pose_command_error_tanh,
             weight=0.5,
             params={
-                "asset_cfg": SceneEntityCfg("robot", body_names=["Link7"]),
+                "asset_cfg": SceneEntityCfg("robot", body_names=[".*Link7.*"]),
                 "pos_std": 0.25,
                 "ori_std": 0.5,
                 "command_name": "ee_pose",
@@ -84,7 +84,7 @@ class H1ReachEnvCfg(ReachEnvCfg):
             func=mdp.pose_command_error_tanh,
             weight=0.5,
             params={
-                "asset_cfg": SceneEntityCfg("robot", body_names=["Link7"]),
+                "asset_cfg": SceneEntityCfg("robot", body_names=[".*Link7.*"]),
                 "pos_std": 0.05,
                 "ori_std": 0.1,
                 "command_name": "ee_pose",
@@ -95,7 +95,7 @@ class H1ReachEnvCfg(ReachEnvCfg):
         # can close its own control loop instead of inferring the EE pose from joint angles.
         self.observations.policy.ee_pose_error = ObsTerm(
             func=mdp.ee_pose_error_b,
-            params={"asset_cfg": SceneEntityCfg("robot", body_names=["Link7"]), "command_name": "ee_pose"},
+            params={"asset_cfg": SceneEntityCfg("robot", body_names=[".*Link7.*"]), "command_name": "ee_pose"},
         )
 
 

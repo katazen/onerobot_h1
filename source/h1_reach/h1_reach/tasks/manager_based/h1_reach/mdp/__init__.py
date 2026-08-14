@@ -3,10 +3,10 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-"""MDP functions: the official reach task's MDP plus this project's custom terms."""
+"""MDP terms used by the OneRobotics A1 reach task."""
 
-from isaaclab_tasks.manager_based.manipulation.reach.mdp import *  # noqa: F401, F403
+from isaaclab.envs.mdp import JointPositionActionCfg
 
-from .fk_pose_command import A1_RIGHT_CHAIN, FkReachablePoseCommand, FkReachablePoseCommandCfg  # noqa: F401
-from .observations import ee_pose_error_b  # noqa: F401
-from .rewards import orientation_command_error_tanh, pose_command_error_tanh  # noqa: F401
+from .fk_pose_command import A1_RIGHT_CHAIN, FkReachablePoseCommand, FkReachablePoseCommandCfg
+from .observations import ee_pose_error_b
+from .rewards import orientation_command_error_tanh, pose_command_error_tanh

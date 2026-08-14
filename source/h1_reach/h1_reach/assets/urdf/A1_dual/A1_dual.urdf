@@ -40,7 +40,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/base_link.STL" />
+          filename="../../meshes/A1_dual/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -54,7 +54,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/base_link.STL" />
+          filename="../../meshes/A1_dual/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -80,7 +80,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_base_R.STL" />
+          filename="../../meshes/A1_dual/Link_base_R.STL" />
       </geometry>
       <material
         name="">
@@ -94,7 +94,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_base_R.STL" />
+          filename="../../meshes/A1_dual/Link_base_R.STL" />
       </geometry>
     </collision>
   </link>
@@ -133,7 +133,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_R1.STL" />
+          filename="../../meshes/A1_dual/Link_R1.STL" />
       </geometry>
       <material
         name="">
@@ -147,7 +147,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_R1.STL" />
+          filename="../../meshes/A1_dual/Link_R1.STL" />
       </geometry>
     </collision>
   </link>
@@ -191,7 +191,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_R2.STL" />
+          filename="../../meshes/A1_dual/Link_R2.STL" />
       </geometry>
       <material
         name="">
@@ -205,7 +205,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_R2.STL" />
+          filename="../../meshes/A1_dual/Link_R2.STL" />
       </geometry>
     </collision>
   </link>
@@ -249,7 +249,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_R3.STL" />
+          filename="../../meshes/A1_dual/Link_R3.STL" />
       </geometry>
       <material
         name="">
@@ -263,7 +263,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_R3.STL" />
+          filename="../../meshes/A1_dual/Link_R3.STL" />
       </geometry>
     </collision>
   </link>
@@ -307,7 +307,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_R4.STL" />
+          filename="../../meshes/A1_dual/Link_R4.STL" />
       </geometry>
       <material
         name="">
@@ -321,7 +321,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_R4.STL" />
+          filename="../../meshes/A1_dual/Link_R4.STL" />
       </geometry>
     </collision>
   </link>
@@ -365,7 +365,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_R5.STL" />
+          filename="../../meshes/A1_dual/Link_R5.STL" />
       </geometry>
       <material
         name="">
@@ -379,7 +379,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_R5.STL" />
+          filename="../../meshes/A1_dual/Link_R5.STL" />
       </geometry>
     </collision>
   </link>
@@ -423,7 +423,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_R6.STL" />
+          filename="../../meshes/A1_dual/Link_R6.STL" />
       </geometry>
       <material
         name="">
@@ -437,7 +437,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_R6.STL" />
+          filename="../../meshes/A1_dual/Link_R6.STL" />
       </geometry>
     </collision>
   </link>
@@ -481,7 +481,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_R7.STL" />
+          filename="../../meshes/A1_dual/Link_R7.STL" />
       </geometry>
       <material
         name="">
@@ -495,7 +495,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_R7.STL" />
+          filename="../../meshes/A1_dual/Link_R7.STL" />
       </geometry>
     </collision>
   </link>
@@ -539,7 +539,7 @@
         rpy="3.14159265358979 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_base_L.STL" />
+          filename="../../meshes/A1_dual/Link_base_L.STL" />
       </geometry>
       <material
         name="">
@@ -553,7 +553,7 @@
         rpy="3.14159265358979 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_base_L.STL" />
+          filename="../../meshes/A1_dual/Link_base_L.STL" />
       </geometry>
     </collision>
   </link>
@@ -592,7 +592,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_L1.STL" />
+          filename="../../meshes/A1_dual/Link_L1.STL" />
       </geometry>
       <material
         name="">
@@ -606,7 +606,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_L1.STL" />
+          filename="../../meshes/A1_dual/Link_L1.STL" />
       </geometry>
     </collision>
   </link>
@@ -650,7 +650,7 @@
         rpy="0 0 -3.14159265358979" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_L2.STL" />
+          filename="../../meshes/A1_dual/Link_L2.STL" />
       </geometry>
       <material
         name="">
@@ -664,7 +664,7 @@
         rpy="0 0 -3.14159265358979" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_L2.STL" />
+          filename="../../meshes/A1_dual/Link_L2.STL" />
       </geometry>
     </collision>
   </link>
@@ -708,7 +708,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_L3.STL" />
+          filename="../../meshes/A1_dual/Link_L3.STL" />
       </geometry>
       <material
         name="">
@@ -722,7 +722,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_L3.STL" />
+          filename="../../meshes/A1_dual/Link_L3.STL" />
       </geometry>
     </collision>
   </link>
@@ -766,7 +766,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_L4.STL" />
+          filename="../../meshes/A1_dual/Link_L4.STL" />
       </geometry>
       <material
         name="">
@@ -780,7 +780,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_L4.STL" />
+          filename="../../meshes/A1_dual/Link_L4.STL" />
       </geometry>
     </collision>
   </link>
@@ -824,7 +824,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_L5.STL" />
+          filename="../../meshes/A1_dual/Link_L5.STL" />
       </geometry>
       <material
         name="">
@@ -838,7 +838,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_L5.STL" />
+          filename="../../meshes/A1_dual/Link_L5.STL" />
       </geometry>
     </collision>
   </link>
@@ -882,7 +882,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_L6.STL" />
+          filename="../../meshes/A1_dual/Link_L6.STL" />
       </geometry>
       <material
         name="">
@@ -896,7 +896,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_L6.STL" />
+          filename="../../meshes/A1_dual/Link_L6.STL" />
       </geometry>
     </collision>
   </link>
@@ -940,7 +940,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_L7.STL" />
+          filename="../../meshes/A1_dual/Link_L7.STL" />
       </geometry>
       <material
         name="">
@@ -954,7 +954,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://onero_description/meshes/A1_dual/Link_L7.STL" />
+          filename="../../meshes/A1_dual/Link_L7.STL" />
       </geometry>
     </collision>
   </link>

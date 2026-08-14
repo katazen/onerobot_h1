@@ -9,8 +9,8 @@ Script to print all the available environments in Isaac Lab.
 The script iterates over all registered environments and stores the details in a table.
 It prints the name of the environment, the entry point and the config file.
 
-All the environments are registered in the `h1_reach` extension. They start
-with `Isaac` in their name.
+All the environments are registered in the ``h1_reach`` extension. The legacy
+``Template-`` task prefix is retained during Phase 1 for API compatibility.
 """
 
 """Launch Isaac Sim Simulator first."""

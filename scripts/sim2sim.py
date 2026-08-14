@@ -6,37 +6,38 @@ Mirrors unitree_rl_lab's a1leg/sim2sim.py, adapted to the reach task:
   exactly like the reference. Two control modes (selected by cfg.sim.control_mode):
     * "position": MuJoCo position servo  (force = kp*(ctrl-q) - kv*qvel)
     * "motor"   : explicit torque PD computed in Python, ctrl = clip(kp*(tgt-q)-kd*qd, +-eff)
-- observation matches the Isaac Lab env exactly (35-dim):
+- observation fields match the Isaac Lab env (35-dim), with an explicit policy quaternion layout:
     joint_pos_rel(7), joint_vel_rel(7), pose_command(7), last_action(7), ee_pose_error(7)
 - the target pose ("command") is a reachable Link7 pose obtained by FK of a random joint config.
 - like Isaac `play`, both the end-effector frame and the goal frame are drawn as RGB triads
   (x=red, y=green, z=blue), since the task tracks orientation too.
 
-Run:  python scripts/sim2sim.py
+Run:  python scripts/sim2sim.py --policy /path/to/exported/policy.pt
 """
 
+import argparse
 import time
+from pathlib import Path
 
 import mujoco
 import mujoco.viewer
 import numpy as np
 import torch
 
-PROJECT_ROOT = "/home/woan/workspace/h1_arm/h1_reach"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+ASSET_ROOT = PROJECT_ROOT / "source" / "h1_reach" / "h1_reach" / "assets"
 
 
 class SimToSimCfg:
     class path:
         # two MJCF versions: position-servo actuators vs direct-torque (motor) actuators
-        pos_xml_path = f"{PROJECT_ROOT}/source/h1_reach/h1_reach/assets/mjcf/A1/a1_right_position.xml"
-        motor_xml_path = f"{PROJECT_ROOT}/source/h1_reach/h1_reach/assets/mjcf/A1/a1_right_motor.xml"
-        # NOTE: retrain the policy at the new dt/decimation (0.005, 4) before expecting a clean match.
-        policy_path = f"{PROJECT_ROOT}/logs/rsl_rl/a1_reach/2026-06-16_17-17-33/exported/policy.pt"
+        pos_xml_path = ASSET_ROOT / "mjcf" / "A1" / "a1_right_position.xml"
+        motor_xml_path = ASSET_ROOT / "mjcf" / "A1" / "a1_right_motor.xml"
 
     class sim:
         sim_duration = 10000.0
-        dt = 1.0 / 60.0          # matches the env sim.dt
-        decimation = 2           # matches the env decimation -> 30 Hz policy
+        dt = 1.0 / 60.0  # matches the env sim.dt
+        decimation = 2  # matches the env decimation -> 30 Hz policy
         action_dim = 7
         control_mode = "motor"  # "position" or "motor" (loads the matching XML)
 
@@ -51,29 +52,51 @@ class SimToSimCfg:
         # With it, both "position" and "motor" modes are stable at dt=1/60. (At armature=0 the
         # explicit "motor" mode blows up on the near-zero-inertia wrist joints.)
         armature = 0.05
-        action_scale = 0.5       # JointPositionActionCfg(scale=0.5, use_default_offset=True)
+        action_scale = 0.5  # JointPositionActionCfg(scale=0.5, use_default_offset=True)
         joint_range_scale = 0.8  # FkReachablePoseCommandCfg(joint_range_scale=0.8)
         ee_body = "Link7"
-        joint_names = ["joint1-a1_r", "joint2-a1_r", "joint3-a1_r", "joint4-a1_r",
-                       "joint5-a1_r", "joint6-a1_r", "joint7-a1_r"]
+        joint_names = [
+            "joint1-a1_r",
+            "joint2-a1_r",
+            "joint3-a1_r",
+            "joint4-a1_r",
+            "joint5-a1_r",
+            "joint6-a1_r",
+            "joint7-a1_r",
+        ]
 
     class command:
-        resample_time = 4.0      # matches resampling_time_range=(4.0, 4.0)
+        resample_time = 4.0  # matches resampling_time_range=(4.0, 4.0)
+
+    class observation:
+        # Preserve the legacy sim2sim default; beta2-trained policies require "xyzw".
+        policy_quaternion_layout = "wxyz"
 
 
 def quat_conjugate(q):  # wxyz
     return np.array([q[0], -q[1], -q[2], -q[3]])
 
 
-def quat_mul(a, b):  # Hamilton product, wxyz (matches isaaclab.utils.math.quat_mul)
+def quat_mul(a, b):  # Hamilton product, internal MuJoCo wxyz layout
     aw, ax, ay, az = a
     bw, bx, by, bz = b
-    return np.array([
-        aw * bw - ax * bx - ay * by - az * bz,
-        aw * bx + ax * bw + ay * bz - az * by,
-        aw * by - ax * bz + ay * bw + az * bx,
-        aw * bz + ax * by - ay * bx + az * bw,
-    ])
+    return np.array(
+        [
+            aw * bw - ax * bx - ay * by - az * bz,
+            aw * bx + ax * bw + ay * bz - az * by,
+            aw * by - ax * bz + ay * bw + az * bx,
+            aw * bz + ax * by - ay * bx + az * bw,
+        ]
+    )
+
+
+def format_policy_quat(q, layout):
+    """Convert an internal MuJoCo wxyz quaternion to the policy's expected layout."""
+    if layout == "wxyz":
+        return q
+    if layout == "xyzw":
+        return np.roll(q, -1)
+    raise ValueError(f"Unsupported policy quaternion layout: {layout}")
 
 
 def draw_frame(scn, pos, mat9, length=0.18, width=0.0025):
@@ -86,22 +109,30 @@ def draw_frame(scn, pos, mat9, length=0.18, width=0.0025):
         g = scn.geoms[scn.ngeom]
         axis = mat[:, i]
         to = np.asarray(pos) + length * axis
-        mujoco.mjv_initGeom(g, mujoco.mjtGeom.mjGEOM_ARROW, np.zeros(3), np.zeros(3),
-                            np.zeros(9), np.array(colors[i], dtype=np.float32))
+        mujoco.mjv_initGeom(
+            g, mujoco.mjtGeom.mjGEOM_ARROW, np.zeros(3), np.zeros(3), np.zeros(9), np.array(colors[i], dtype=np.float32)
+        )
         mujoco.mjv_connector(g, mujoco.mjtGeom.mjGEOM_ARROW, width, np.asarray(pos), to)
         scn.ngeom += 1
 
 
 class MujocoRunner:
-    def __init__(self, cfg: SimToSimCfg):
+    def __init__(self, cfg: SimToSimCfg, policy_path: Path):
         self.cfg = cfg
         self.control_mode = cfg.sim.control_mode
+        self.policy_quaternion_layout = cfg.observation.policy_quaternion_layout
+        if self.control_mode not in {"position", "motor"}:
+            raise ValueError(f"Unsupported control mode: {self.control_mode}")
+        if self.policy_quaternion_layout not in {"wxyz", "xyzw"}:
+            raise ValueError(f"Unsupported policy quaternion layout: {self.policy_quaternion_layout}")
+        if not policy_path.is_file():
+            raise FileNotFoundError(f"Policy checkpoint does not exist: {policy_path}")
         xml = cfg.path.pos_xml_path if self.control_mode == "position" else cfg.path.motor_xml_path
-        self.model = mujoco.MjModel.from_xml_path(xml)
+        self.model = mujoco.MjModel.from_xml_path(str(xml))
         self.model.opt.timestep = cfg.sim.dt
         self.data = mujoco.MjData(self.model)
         self.scratch = mujoco.MjData(self.model)  # for FK-based command sampling
-        self.policy = torch.jit.load(cfg.path.policy_path, map_location="cpu")
+        self.policy = torch.jit.load(str(policy_path), map_location="cpu")
         self.policy.eval()
 
         self.action_dim = cfg.sim.action_dim
@@ -171,13 +202,16 @@ class MujocoRunner:
         qd = self.data.qvel[self.vadr].astype(np.float32)
         joint_pos_rel = q - self.default_dof_pos.astype(np.float32)
         joint_vel_rel = qd
-        pose_command = np.concatenate([self.des_pos, self.des_quat]).astype(np.float32)
+        des_quat_obs = format_policy_quat(self.des_quat, self.policy_quaternion_layout)
+        pose_command = np.concatenate([self.des_pos, des_quat_obs]).astype(np.float32)
         ee_pos = self.data.xpos[self.ee_id]
         ee_quat = self.data.xquat[self.ee_id]
         pos_err = (self.des_pos - ee_pos).astype(np.float32)
         quat_err = quat_mul(self.des_quat, quat_conjugate(ee_quat)).astype(np.float32)
-        return np.concatenate([joint_pos_rel, joint_vel_rel, pose_command, self.action,
-                               pos_err, quat_err]).astype(np.float32)
+        quat_err = format_policy_quat(quat_err, self.policy_quaternion_layout)
+        return np.concatenate([joint_pos_rel, joint_vel_rel, pose_command, self.action, pos_err, quat_err]).astype(
+            np.float32
+        )
 
     def apply_control(self, target):
         if self.control_mode == "position":
@@ -221,6 +255,29 @@ class MujocoRunner:
         self.viewer.close()
 
 
+def parse_args() -> argparse.Namespace:
+    """Parse command-line arguments."""
+    parser = argparse.ArgumentParser(description="Run the OneRobotics A1 reach policy in MuJoCo.")
+    parser.add_argument("--policy", type=Path, required=True, help="Path to an exported TorchScript policy.pt file.")
+    parser.add_argument(
+        "--control-mode",
+        choices=("position", "motor"),
+        default=SimToSimCfg.sim.control_mode,
+        help="MuJoCo actuator mode (default: motor).",
+    )
+    parser.add_argument(
+        "--policy-quaternion-layout",
+        choices=("wxyz", "xyzw"),
+        default=SimToSimCfg.observation.policy_quaternion_layout,
+        help="Quaternion layout expected by the policy (beta2: xyzw; legacy default: wxyz).",
+    )
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    runner = MujocoRunner(SimToSimCfg())
+    args = parse_args()
+    cfg = SimToSimCfg()
+    cfg.sim.control_mode = args.control_mode
+    cfg.observation.policy_quaternion_layout = args.policy_quaternion_layout
+    runner = MujocoRunner(cfg, args.policy.expanduser().resolve())
     runner.run()
