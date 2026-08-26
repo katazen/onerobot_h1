@@ -22,6 +22,9 @@ The repository provides an Isaac Lab articulation configuration, a manager-based
 
 - `A1_RIGHT_CFG`: fixed-base OneRobotics A1 right-arm articulation with seven joints, implicit PD actuators, effort and velocity limits, and configured armature.
 - Portable asset loading: Isaac Lab imports the packaged A1 URDF at runtime instead of referencing a developer-local USD path.
+- `assets/urdf/A1_2026/`: publication-source inventory for the current right-
+  and left-arm models, with two independent 7-DoF URDFs, 16 referenced meshes,
+  and their model/control metadata. No A1 2026 bimanual model is included.
 - Manager-based reach task derived from Isaac Lab's manipulation reach example.
 - Reachable-by-construction pose commands sampled from joint limits and evaluated with forward kinematics.
 - Position-and-orientation observations and multi-scale pose rewards.
@@ -111,7 +114,9 @@ source/h1_reach/
     tasks/manager_based/
       h1_reach/                # legacy package path for the reach task
     assets/
-      urdf/                    # single-arm and dual-arm URDF models
+      urdf/A1_2026/            # current right/left single-arm source models
+      urdf/A1/                 # legacy single-arm URDF model inventory
+      urdf/A1_dual/            # legacy dual-arm URDF model inventory
       meshes/                  # STL geometry
       mjcf/                    # MuJoCo models
 ```
@@ -123,7 +128,7 @@ The `robots/a1.py` module does not import reach-task code. The legacy top-level 
 This repository uses a clear code-and-assets license split:
 
 - **Python and other project code:** BSD-3-Clause, `Copyright (c) 2026, OneRobotics`; see [`LICENSE`](LICENSE).
-- **OneRobotics A1 robot assets:** CC BY 4.0, `Copyright © 2026 OneRobotics`. This scope includes the listed URDF, MJCF/XML and STL files and covered USD conversions published by OneRobotics from them. Attribution and an indication of changes are required; see [`ASSET_LICENSE_STATUS.md`](ASSET_LICENSE_STATUS.md) and the full [`CC BY 4.0 license text`](LICENSES/CC-BY-4.0.txt).
+- **OneRobotics A1 robot assets:** CC BY 4.0, `Copyright © 2026 OneRobotics`. This scope includes the listed URDF, MJCF/XML and STL files, the A1 2026 model/control metadata YAML, and covered USD conversions published by OneRobotics from them. Attribution and an indication of changes are required; see [`ASSET_LICENSE_STATUS.md`](ASSET_LICENSE_STATUS.md) and the full [`CC BY 4.0 license text`](LICENSES/CC-BY-4.0.txt).
 - **Isaac Lab-derived files:** retained upstream Isaac Lab Project Developers copyright and BSD-3-Clause notices; see [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
 
 Recommended asset attribution: `OneRobotics A1 robot assets © 2026 OneRobotics, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Source: https://github.com/katazen/onerobot_h1. Changes: none.` Replace `none` with a short description when redistributing modified assets.

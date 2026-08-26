@@ -2,6 +2,8 @@
 
 License declaration date: 2026-08-14
 
+Asset inventory updated: 2026-08-26
+
 Copyright holder and licensor: **OneRobotics**
 
 License: **Creative Commons Attribution 4.0 International** (`CC-BY-4.0`)
@@ -18,14 +20,26 @@ The complete legal code is included at [`LICENSES/CC-BY-4.0.txt`](LICENSES/CC-BY
 
 The CC BY 4.0 asset license applies to:
 
-- all 33 binary STL mesh files under `source/h1_reach/h1_reach/assets/meshes/`;
-- all three URDF robot-model files under `source/h1_reach/h1_reach/assets/urdf/`;
+- all 49 binary STL mesh files: 33 under
+  `source/h1_reach/h1_reach/assets/meshes/` and 16 under
+  `source/h1_reach/h1_reach/assets/urdf/A1_2026/meshes/`;
+- all five URDF robot-model files under
+  `source/h1_reach/h1_reach/assets/urdf/`, including the A1 2026 right- and
+  left-arm source models `A1_2026/a1_r.urdf` and `A1_2026/a1_l.urdf`;
 - all five MuJoCo/MJCF XML robot-model files under `source/h1_reach/h1_reach/assets/mjcf/`;
+- the A1 2026 model and control metadata in
+  `source/h1_reach/h1_reach/assets/urdf/A1_2026/model_parameters.yaml`;
 - USD, USDA, USDC, or USDZ conversions that OneRobotics publishes from the covered model files and explicitly identifies as covered by this declaration, excluding incorporated third-party material that OneRobotics is not authorized to license.
 
-At the declaration date, the source tree contains 41 covered robot-model files: 33 STL files, three URDF files, and five MJCF/XML files. No USD-format asset is currently tracked.
+The current source tree contains 59 covered robot-model files: 49 STL files,
+five URDF files, and five MJCF/XML files. Together with the covered A1 2026
+metadata YAML, the current covered asset inventory is 60 files. The A1 2026
+addition is limited to two independent single-arm URDF models, their 16
+referenced meshes, and the metadata YAML; no A1 2026 bimanual model is included
+or declared. No USD-format asset is currently tracked.
 
-In built wheel and source-distribution artifacts, these same model files appear under `h1_reach/assets/`; that packaging-path change does not alter the license scope.
+In built wheel and source-distribution artifacts, these files appear under
+`h1_reach/assets/`; that packaging-path change does not alter the license scope.
 
 ## Required attribution
 

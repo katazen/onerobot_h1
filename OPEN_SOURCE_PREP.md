@@ -6,6 +6,12 @@ Repository baseline: `b060df94bbdeb7d05f7fb2ef2e648d180c4d8ba2`
 
 Isaac Lab review target: `release/3.0.0-beta2` at `2e44ddb2e19536579140496023b5ccb060bc4152`
 
+> **Historical inventory note:** This report records the 2026-08-14 Phase 1
+> baseline and its 41-file asset inventory. The current publication inventory,
+> including the later A1 2026 right- and left-arm source models, is maintained
+> in [`ASSET_LICENSE_STATUS.md`](ASSET_LICENSE_STATUS.md). Counts below remain
+> unchanged so that the original validation snapshot is not rewritten.
+
 ## 1. Summary of Phase 1 changes
 
 Phase 1 makes the existing external project portable and reviewable without choosing an upstream directory layout. It corrects public branding, removes developer-local runtime paths, packages the existing robot descriptions, cleans project metadata, records the code-and-assets license split, removes unused template UI code, and applies narrowly scoped Isaac Lab 3.0 compatibility fixes.

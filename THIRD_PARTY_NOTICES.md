@@ -2,6 +2,9 @@
 
 This file records third-party material identified during the 2026-08-14 Phase 1 audit. It does not change the license of any file.
 
+The asset-path inventory was reviewed again on 2026-08-26 for the A1 2026
+right- and left-arm source-model addition.
+
 ## Isaac Lab template-derived source
 
 Several Python scripts, configuration files, and task modules were copied or substantially derived from the Isaac Lab external-project and manipulation/reach templates.
@@ -14,13 +17,25 @@ No blanket copyright-header replacement was performed. The project code and OneR
 
 ## SolidWorks to URDF Exporter attribution
 
-The three URDF files contain their original generated-file comment identifying SolidWorks to URDF Exporter, commit `1.6.0-4-g7f85cfe`, and Stephen Brawner as the exporter author. The exporter source code is not vendored in this repository. Its attribution is preserved, and its software license is separate from the CC BY 4.0 license that OneRobotics applies to the A1 model assets.
+Four of the five URDF files contain a generated-file comment identifying
+SolidWorks to URDF Exporter, commit `1.6.0-4-g7f85cfe`, and Stephen Brawner as
+the exporter author. This includes the three previously covered URDF files and
+`source/h1_reach/h1_reach/assets/urdf/A1_2026/a1_l.urdf`. The comment is not
+present in `source/h1_reach/h1_reach/assets/urdf/A1_2026/a1_r.urdf`, so this
+notice does not infer file-local tool
+attribution where the source file does not provide it. The exporter source code
+is not vendored in this repository. Its software license is separate from the
+CC BY 4.0 license that OneRobotics applies to the A1 model assets.
 
 ## External runtime dependencies
 
 Isaac Sim, the Isaac Lab runtime distribution, RSL-RL, MuJoCo, PyTorch, Gymnasium, NumPy, and their dependencies are external runtime dependencies and are not vendored here. The Isaac Lab template-derived source files copied into this repository are handled separately above. Users and downstream distributors must follow the licenses supplied by the external projects and their installed distributions.
 
-No other third-party model, mesh, texture, or material was found vendored under `source/h1_reach/h1_reach/assets/`. The OneRobotics-owned physical-asset scope and required attribution are documented separately in `ASSET_LICENSE_STATUS.md`.
+No additional third-party model, mesh, texture, or material was identified by
+the file-level review under `source/h1_reach/h1_reach/assets/`. This is an
+inventory finding, not a legal chain-of-title determination. The
+OneRobotics-owned physical-asset scope and required attribution are documented
+separately in `ASSET_LICENSE_STATUS.md`.
 
 ## README visualization
 
