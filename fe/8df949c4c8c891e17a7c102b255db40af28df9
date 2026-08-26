@@ -1,0 +1,21 @@
+source/h1_reach/h1_reach/assets/urdf/A1_2026/model_parameters.yaml
+  s_ac3280d582c80f::t_e9934edbe90718 19,28,42-45
+source/h1_reach/h1_reach/assets/urdf/A1_2026/README.md
+  s_ac3280d582c80f::t_e9934edbe90718 36-42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "fe8df949c4c8c891e17a7c102b255db40af28df9",
+  "prompts": {},
+  "sessions": {
+    "s_ac3280d582c80f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a03bfe-80a8-78f1-bb46-f14a6cff35f6",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "T1Amoo <menxlee@gmail.com>"
+    }
+  }
+}
