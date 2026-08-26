@@ -16,6 +16,7 @@ motors:
     rotor_inertia_kg_m2: 2.193e-5
     reflected_inertia_kg_m2: 0.050927514873
     rated_output_torque_nm: 15.0
+    peak_output_torque_nm: 26.859
     rated_output_speed_rpm: 25.0
     rated_output_speed_rad_s: 2.6179938779914944
   "4310":
@@ -24,6 +25,7 @@ motors:
     rotor_inertia_kg_m2: 2.193e-5
     reflected_inertia_kg_m2: 0.002193
     rated_output_torque_nm: 3.0
+    peak_output_torque_nm: 5.975
     rated_output_speed_rpm: 120.0
     rated_output_speed_rad_s: 12.566370614359172
 
@@ -37,8 +39,10 @@ joint_pd:
   joint7: {kp: 40.0, kd: 1.0}
 
 modeling_scope:
-  torque_limit: rated_output_torque
-  peak_torque_modeled: false
+  torque_limit: peak_output_torque
+  peak_torque_modeled: true
+  peak_torque_duration_limit_modeled: false
+  thermal_derating_modeled: false
   velocity_limit: rated_output_speed
   gripper_included: false
 

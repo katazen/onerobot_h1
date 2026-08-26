@@ -33,6 +33,13 @@ The 4340 actuator is used for joints 1--3 with a 48.19 reduction ratio. The
 motor-side rotor inertia of `2.193e-5 kg m^2`; the joint-side armature is the
 rotor inertia multiplied by the square of the reduction ratio.
 
+The confirmed joint-output rated/peak torques are `15.0/26.859 N m` for
+joints 1--3 and `3.0/5.975 N m` for joints 4--7. The simulation uses the peak
+values as its static solver saturation limits and retains the rated values as
+actuator metadata. A peak-duration transition and thermal derating are not
+modeled; they are not required to apply the supplied peak value as a simple
+hard torque bound.
+
 ## Known source limitation
 
 Both source URDFs explicitly identify the Link7 mass (`0.20 kg`) and inertia as
