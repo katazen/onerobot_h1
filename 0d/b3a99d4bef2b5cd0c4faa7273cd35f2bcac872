@@ -1,0 +1,43 @@
+source/h1_reach/h1_reach/assets/urdf/A1_2026/README.md
+  s_ac3280d582c80f::t_f37828bf67b100 12,14-23
+  s_ac3280d582c80f::t_603c6f1bf53807 1-11,13,24-42
+README.md
+  s_ac3280d582c80f::t_f37828bf67b100 25-27,117,131
+  s_ac3280d582c80f::t_c9ab42bb6b8ba2 118-119
+source/h1_reach/ASSET_LICENSE_STATUS.md
+  s_ac3280d582c80f::t_499b4b3af28fd0 5-6,23-28,30-31,34-39,41-42
+source/h1_reach/h1_reach/assets/urdf/A1_2026/a1_l.urdf
+  s_ac3280d582c80f::t_1a1e06eb18d69c 1-473
+ASSET_LICENSE_STATUS.md
+  s_ac3280d582c80f::t_499b4b3af28fd0 5-6,23-28,30-31,34-39,41-42
+THIRD_PARTY_NOTICES.md
+  s_ac3280d582c80f::t_c9ab42bb6b8ba2 23-25
+  s_ac3280d582c80f::t_499b4b3af28fd0 5-7,20-22,26-28,34-38
+source/h1_reach/THIRD_PARTY_NOTICES.md
+  s_ac3280d582c80f::t_c9ab42bb6b8ba2 23-25
+  s_ac3280d582c80f::t_499b4b3af28fd0 5-7,20-22,26-28,34-38
+source/h1_reach/h1_reach/assets/urdf/A1_2026/model_parameters.yaml
+  s_ac3280d582c80f::t_603c6f1bf53807 1-46
+source/h1_reach/README.md
+  s_ac3280d582c80f::t_f37828bf67b100 8-14
+OPEN_SOURCE_PREP.md
+  s_ac3280d582c80f::t_f37828bf67b100 9-14
+source/h1_reach/h1_reach/assets/urdf/A1_2026/a1_r.urdf
+  s_ac3280d582c80f::t_dca6c742e2ce9f 1-235
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "0db3a99d4bef2b5cd0c4faa7273cd35f2bcac872",
+  "prompts": {},
+  "sessions": {
+    "s_ac3280d582c80f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a03bfe-80a8-78f1-bb46-f14a6cff35f6",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "T1Amoo <menxlee@gmail.com>"
+    }
+  }
+}
