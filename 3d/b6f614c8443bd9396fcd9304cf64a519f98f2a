@@ -1,0 +1,23 @@
+source/h1_reach/h1_reach/assets/urdf/A1_2026/README.md
+  s_aa6dbb7ac83cd5::t_58d73ea386dfe4 29-41
+source/h1_reach/h1_reach/assets/urdf/A1_2026/SHA256SUMS
+  s_aa6dbb7ac83cd5::t_58d73ea386dfe4 1-28
+README.md
+  s_aa6dbb7ac83cd5::t_90b476b7eb897b 163-167
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "3db6f614c8443bd9396fcd9304cf64a519f98f2a",
+  "prompts": {},
+  "sessions": {
+    "s_aa6dbb7ac83cd5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a04806-3232-7221-8d77-6491e7d2b6a1",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "T1Amoo <menxlee@gmail.com>"
+    }
+  }
+}
