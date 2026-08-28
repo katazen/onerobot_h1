@@ -26,6 +26,19 @@ OneRobotics and are distributed under CC BY 4.0 as declared in the
 repository's `ASSET_LICENSE_STATUS.md`. Neither CAD revision includes a
 gripper.
 
+## Isaac Lab review set
+
+`SHA256SUMS` freezes the exact right-arm, bimanual-stand, and shared parameter
+files consumed by the current Isaac Lab contribution. Verify the review set
+from this directory with:
+
+```bash
+sha256sum --check SHA256SUMS
+```
+
+The checksum file identifies review-stage source bytes. It does not imply
+NVIDIA legal approval or prescribe the final asset-hosting mechanism.
+
 ## Bimanual stand provenance
 
 The delivered bimanual source was repaired by the hardware team for coordinate

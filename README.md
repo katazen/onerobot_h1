@@ -160,4 +160,9 @@ hardware-team-supplied bimanual-with-stand model and task. The branch is being
 reviewed before an upstream PR is opened. Technical acceptance and NVIDIA legal
 approval of the asset are separate remaining review gates.
 
+The exact source bytes used by the Isaac Lab review branch are recorded in
+[`A1_2026/SHA256SUMS`](source/h1_reach/h1_reach/assets/urdf/A1_2026/SHA256SUMS).
+This review manifest does not claim NVIDIA legal approval or a final hosted
+asset URI.
+
 See [`OPEN_SOURCE_PREP.md`](OPEN_SOURCE_PREP.md) for the Phase 1 audit, test results, licensing record, and the Phase 2 plan.
