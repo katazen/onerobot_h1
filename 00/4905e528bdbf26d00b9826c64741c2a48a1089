@@ -1,0 +1,45 @@
+THIRD_PARTY_NOTICES.md
+  s_ac3280d582c80f::t_1ddb74b2d31ef6 5-6,20,23-25
+source/h1_reach/ASSET_LICENSE_STATUS.md
+  s_ac3280d582c80f::t_e7be2c4769cb6a 5,23-27,29-31,37-43,56
+  s_ac3280d582c80f::t_a80248790870d7 57-59
+  s_ac3280d582c80f::t_f7a76dfa517621 60
+source/h1_reach/THIRD_PARTY_NOTICES.md
+  s_ac3280d582c80f::t_1ddb74b2d31ef6 5-6,20,23-25
+source/h1_reach/README.md
+  s_ac3280d582c80f::t_4afa37fe8f2868 9,11-14
+README.md
+  s_ac3280d582c80f::t_4afa37fe8f2868 25-28,118
+ASSET_LICENSE_STATUS.md
+  s_ac3280d582c80f::t_e7be2c4769cb6a 5,23-27,29-31,37-43,56
+  s_ac3280d582c80f::t_a80248790870d7 57-59
+  s_ac3280d582c80f::t_d53573e4eae8d1 60
+source/h1_reach/h1_reach/assets/urdf/A1_2026/README.md
+  s_ac3280d582c80f::t_85154ac2298c56 3,8-9,20-21,24-36,38-39,41,51-56,72-76
+  s_ac3280d582c80f::t_923177e452c7d9 40,42-47
+  s_ac3280d582c80f::t_7b74f6a9ddb647 4-6,37
+  s_ac3280d582c80f::t_6922ffc511ec58 7
+source/h1_reach/h1_reach/assets/urdf/A1_2026/model_parameters.yaml
+  s_ac3280d582c80f::t_7b74f6a9ddb647 4
+  s_ac3280d582c80f::t_029425ff63d3d3 1,7-19,21-27,35,45,65-66
+  s_ac3280d582c80f::t_923177e452c7d9 20
+source/h1_reach/h1_reach/assets/urdf/A1_2026/bimanual_stand/a1_bimanual_stand.urdf
+  s_ac3280d582c80f::t_4629646a208b1b 1,3-968
+  s_ac3280d582c80f::t_fd7bca2ee69e3b 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "004905e528bdbf26d00b9826c64741c2a48a1089",
+  "prompts": {},
+  "sessions": {
+    "s_ac3280d582c80f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a03bfe-80a8-78f1-bb46-f14a6cff35f6",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "T1Amoo <menxlee@gmail.com>"
+    }
+  }
+}
