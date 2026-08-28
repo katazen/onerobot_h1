@@ -22,9 +22,10 @@ The repository provides an Isaac Lab articulation configuration, a manager-based
 
 - `A1_RIGHT_CFG`: fixed-base OneRobotics A1 right-arm articulation with seven joints, implicit PD actuators, effort and velocity limits, and configured armature.
 - Portable asset loading: Isaac Lab imports the packaged A1 URDF at runtime instead of referencing a developer-local USD path.
-- `assets/urdf/A1_2026/`: publication-source inventory for the current right-
-  and left-arm models, with two independent 7-DoF URDFs, 16 referenced meshes,
-  and their model/control metadata. No A1 2026 bimanual model is included.
+- `assets/urdf/A1_2026/`: publication-source inventory containing two
+  independent 7-DoF arm URDFs and a distinct whole-robot bimanual stand URDF,
+  with 33 referenced meshes and shared model/control metadata. These are
+  separate CAD revisions; none includes a gripper.
 - Manager-based reach task derived from Isaac Lab's manipulation reach example.
 - Reachable-by-construction pose commands sampled from joint limits and evaluated with forward kinematics.
 - Position-and-orientation observations and multi-scale pose rewards.
@@ -114,7 +115,7 @@ source/h1_reach/
     tasks/manager_based/
       h1_reach/                # legacy package path for the reach task
     assets/
-      urdf/A1_2026/            # current right/left single-arm source models
+      urdf/A1_2026/            # current single-arm and bimanual-stand sources
       urdf/A1/                 # legacy single-arm URDF model inventory
       urdf/A1_dual/            # legacy dual-arm URDF model inventory
       meshes/                  # STL geometry

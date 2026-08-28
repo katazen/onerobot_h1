@@ -6,9 +6,9 @@ Project documentation, installation and validation commands are maintained in th
 
 The packaged distribution contains code under BSD-3-Clause and OneRobotics A1 robot assets under CC BY 4.0. The wheel and source distribution include the applicable license texts, asset scope and third-party notices.
 
-The current asset manifest contains 59 robot-model files (49 STL, five URDF,
+The current asset manifest contains 77 robot-model files (66 STL, six URDF,
 and five MJCF/XML files) plus the CC BY 4.0 A1 2026 model/control metadata YAML.
-The A1 2026 addition itself contains two independent single-arm URDFs and their
-16 referenced meshes; it does not contain or claim an A1 2026 bimanual model.
-The packaged asset README is documentation and is not counted as a robot-model
-file.
+The A1 2026 inventory itself contains two independent single-arm URDFs with 16
+meshes and a distinct whole-robot bimanual stand URDF with 17 meshes. The
+revisions are separate CAD sources and do not include a gripper. The packaged
+asset README is documentation and is not counted as a robot-model file.

@@ -2,8 +2,8 @@
 
 This file records third-party material identified during the 2026-08-14 Phase 1 audit. It does not change the license of any file.
 
-The asset-path inventory was reviewed again on 2026-08-26 for the A1 2026
-right- and left-arm source-model addition.
+The asset-path inventory was reviewed again on 2026-08-28 for the A1 2026
+independent-arm and whole-robot bimanual stand source-model additions.
 
 ## Isaac Lab template-derived source
 
@@ -17,10 +17,12 @@ No blanket copyright-header replacement was performed. The project code and OneR
 
 ## SolidWorks to URDF Exporter attribution
 
-Four of the five URDF files contain a generated-file comment identifying
+Five of the six URDF files contain a generated-file comment identifying
 SolidWorks to URDF Exporter, commit `1.6.0-4-g7f85cfe`, and Stephen Brawner as
 the exporter author. This includes the three previously covered URDF files and
-`source/h1_reach/h1_reach/assets/urdf/A1_2026/a1_l.urdf`. The comment is not
+`source/h1_reach/h1_reach/assets/urdf/A1_2026/a1_l.urdf` and
+`source/h1_reach/h1_reach/assets/urdf/A1_2026/bimanual_stand/a1_bimanual_stand.urdf`.
+The comment is not
 present in `source/h1_reach/h1_reach/assets/urdf/A1_2026/a1_r.urdf`, so this
 notice does not infer file-local tool
 attribution where the source file does not provide it. The exporter source code

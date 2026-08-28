@@ -1,9 +1,12 @@
 # OneRobotics A1 2026 source model
 
-This directory contains the current OneRobotics A1 right- and left-arm URDF
-models and their referenced meshes. The source files were imported without
-geometric or inertial edits from the OneRobotics SDK asset bundle whose
-SHA-256 is:
+This directory contains two distinct OneRobotics A1 CAD revisions: the current
+independent right- and left-arm source models, and a hardware-team-supplied
+whole-robot bimanual stand model. The revisions are published side by side and
+are not mixed or synthesized from one another.
+
+The independent-arm source files were imported without geometric or inertial
+edits from the OneRobotics SDK asset bundle whose SHA-256 is:
 
 ```text
 9dfa9f0e1b7fa8d05b12b47dd67ab0484bc376b4db60ce541ee832455a0be8c9
@@ -14,19 +17,43 @@ SHA-256 is:
 - `a1_r.urdf`: independent right-arm 7-DoF source model;
 - `a1_l.urdf`: independent left-arm 7-DoF source model;
 - `meshes/a1_r/` and `meshes/a1_l/`: eight referenced STL files per arm;
+- `bimanual_stand/a1_bimanual_stand.urdf`: complete stand with two 7-DoF arms;
+- `bimanual_stand/meshes/`: the 17 meshes referenced by that whole-robot model;
 - `model_parameters.yaml`: shared model and simulation-control metadata.
 
-This directory does not contain or declare an A1 2026 bimanual model. The 18
-robot-model files and `model_parameters.yaml` are Copyright 2026 OneRobotics
-and are distributed under CC BY 4.0 as declared in the repository's
-`ASSET_LICENSE_STATUS.md`.
+The 36 robot-model files and `model_parameters.yaml` are Copyright 2026
+OneRobotics and are distributed under CC BY 4.0 as declared in the
+repository's `ASSET_LICENSE_STATUS.md`. Neither CAD revision includes a
+gripper.
+
+## Bimanual stand provenance
+
+The delivered bimanual source was repaired by the hardware team for coordinate
+frame consistency without changing world-space geometry or inertial behavior.
+The hashes below make the reviewed lineage explicit:
+
+- raw baseline before coordinate-frame repair:
+  `29ee4a14696c3827a0ed2611b1d32fb27d5204a89cae07eee3e30a02085b4ecb`;
+- hardware-team source after that repair:
+  `3ae0bc193bdaa3aed205655e03fd20584a594d5e76e7f9cf6511ab82b761486f`;
+- publication candidate in this directory:
+  `4719154dd2395498a646f60a468ccdd3c72e9f9754478c4df74eb495e605ef9d`.
+
+The publication candidate changes only non-physical text: mesh URIs use the
+portable `./meshes/` directory, the MuJoCo compiler uses `meshdir="meshes"`,
+and the generated header omits the exporter's contact address. No mass, center
+of mass, inertia, joint transform, axis, or joint limit was changed. The
+published text also uses repository-normalized line endings, so its byte hash
+intentionally differs from the delivered source.
 
 ## Hardware overlay
 
-The URDF contains the model geometry, link inertias, joint transforms, position
-limits, and nominal effort fields. The actuator and control values confirmed by
-OneRobotics for simulation are recorded in `model_parameters.yaml` and applied
-by the Isaac Lab integration rather than rewriting the source URDF.
+The URDFs contain the model geometry, link inertias, joint transforms, and
+position limits. The bimanual source retains the delivered raw
+`effort="0"`/`velocity="0"` placeholders on all 14 revolute joints. These zero
+values are not actuator ratings: the actuator and control values confirmed by
+OneRobotics are recorded in `model_parameters.yaml` and must overlay each 7-DoF
+arm at integration time rather than rewriting the source URDF.
 
 The 4340 actuator is used for joints 1--3 with a 48.19 reduction ratio. The
 4310 actuator is used for joints 4--7 with a 10:1 reduction ratio. Both use a
@@ -42,8 +69,8 @@ hard torque bound.
 
 ## Known source limitation
 
-Both source URDFs explicitly identify the Link7 mass (`0.20 kg`) and inertia as
-a temporary v1 flange placeholder. The values are retained exactly as supplied;
-they are not presented as measured bare-flange parameters. A future source-model
-revision should replace them when measured mass, center of mass, and inertia are
-available.
+The two independent-arm URDFs explicitly identify the Link7 mass (`0.20 kg`)
+and inertia as a temporary v1 flange placeholder. The values are retained
+exactly as supplied; they are not presented as measured bare-flange parameters.
+This limitation belongs to that CAD revision and is not applied to the distinct
+bimanual stand revision.

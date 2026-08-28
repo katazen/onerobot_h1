@@ -2,7 +2,7 @@
 
 License declaration date: 2026-08-14
 
-Asset inventory updated: 2026-08-26
+Asset inventory updated: 2026-08-28
 
 Copyright holder and licensor: **OneRobotics**
 
@@ -20,23 +20,27 @@ The complete legal code is included at [`LICENSES/CC-BY-4.0.txt`](LICENSES/CC-BY
 
 The CC BY 4.0 asset license applies to:
 
-- all 49 binary STL mesh files: 33 under
-  `source/h1_reach/h1_reach/assets/meshes/` and 16 under
-  `source/h1_reach/h1_reach/assets/urdf/A1_2026/meshes/`;
-- all five URDF robot-model files under
+- all 66 binary STL mesh files: 33 under
+  `source/h1_reach/h1_reach/assets/meshes/`, 16 under
+  `source/h1_reach/h1_reach/assets/urdf/A1_2026/meshes/`, and 17 under
+  `source/h1_reach/h1_reach/assets/urdf/A1_2026/bimanual_stand/meshes/`;
+- all six URDF robot-model files under
   `source/h1_reach/h1_reach/assets/urdf/`, including the A1 2026 right- and
-  left-arm source models `A1_2026/a1_r.urdf` and `A1_2026/a1_l.urdf`;
+  left-arm source models `A1_2026/a1_r.urdf` and `A1_2026/a1_l.urdf`, and the
+  whole-robot source model
+  `A1_2026/bimanual_stand/a1_bimanual_stand.urdf`;
 - all five MuJoCo/MJCF XML robot-model files under `source/h1_reach/h1_reach/assets/mjcf/`;
 - the A1 2026 model and control metadata in
   `source/h1_reach/h1_reach/assets/urdf/A1_2026/model_parameters.yaml`;
 - USD, USDA, USDC, or USDZ conversions that OneRobotics publishes from the covered model files and explicitly identifies as covered by this declaration, excluding incorporated third-party material that OneRobotics is not authorized to license.
 
-The current source tree contains 59 covered robot-model files: 49 STL files,
-five URDF files, and five MJCF/XML files. Together with the covered A1 2026
-metadata YAML, the current covered asset inventory is 60 files. The A1 2026
-addition is limited to two independent single-arm URDF models, their 16
-referenced meshes, and the metadata YAML; no A1 2026 bimanual model is included
-or declared. No USD-format asset is currently tracked.
+The current source tree contains 77 covered robot-model files: 66 STL files,
+six URDF files, and five MJCF/XML files. Together with the covered A1 2026
+metadata YAML, the current covered asset inventory is 78 files. The A1 2026
+inventory contains two independent single-arm URDF models with 16 meshes and a
+distinct whole-robot bimanual stand URDF with 17 meshes, for 36 A1 2026
+robot-model files. The revisions are separate CAD sources and do not include a
+gripper. No USD-format asset is currently tracked.
 
 In built wheel and source-distribution artifacts, these files appear under
 `h1_reach/assets/`; that packaging-path change does not alter the license scope.
@@ -48,6 +52,11 @@ When redistributing the covered material or an adaptation, retain the copyright 
 > OneRobotics A1 robot assets © 2026 OneRobotics, licensed under CC BY 4.0 (<https://creativecommons.org/licenses/by/4.0/>). Source: <https://github.com/katazen/onerobot_h1>. Changes: none.
 
 Replace `none` with a short description when redistributing modified assets. The OneRobotics website is <http://www.onerobot.com/>.
+
+For the bimanual stand publication candidate in this repository, the indicated
+changes are: mesh URI and MuJoCo `meshdir` references adapted to the portable
+repository layout, normalized line endings, and removal of the exporter's
+contact address from the generated comment; physical model fields unchanged.
 
 ## Scope boundaries
 
