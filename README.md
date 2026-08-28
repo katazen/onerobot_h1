@@ -12,9 +12,14 @@ The repository provides an Isaac Lab articulation configuration, a manager-based
 
 ## Project status
 
-- The proposed upstream scope is the **OneRobotics A1 robot asset and Isaac Lab articulation configuration**.
-- The reach task is validation material; maintainers may choose not to include it upstream.
-- Final placement in `isaaclab_contrib`, `isaaclab_assets`, or another package has not been decided.
+- The Isaac Lab maintainer direction in [Issue #7095](https://github.com/isaac-sim/IsaacLab/issues/7095)
+  is to contribute the **OneRobotics A1 asset and Reach environment together**.
+- The review branch targets current Isaac Lab `develop`: robot configurations
+  live in `isaaclab_assets`, while the Reach environments live under
+  `isaaclab_tasks/contrib/reach` alongside the OpenArm contribution.
+- The source assets in this repository are public review-stage inputs. Final
+  NVIDIA legal approval and any maintainer-requested hosted-asset migration are
+  still pending; no NVIDIA Nucleus path is claimed here.
 - The legacy `h1_reach` package name and `Template-A1-Reach-*` Gym IDs are intentionally retained during Phase 1 to avoid breaking existing users.
 - An authentic Isaac Lab render is included above. The underlying OneRobotics A1 model is covered by the asset license described below; third-party Isaac Lab/Isaac Sim scene elements in the screenshot remain subject to their own terms.
 
@@ -34,7 +39,12 @@ The repository provides an Isaac Lab articulation configuration, a manager-based
 
 ## Software compatibility
 
-The upstream compatibility target is the Isaac Lab `release/3.0.0-beta2` branch. The branch requires Python 3.12 and the Isaac Sim 6.0 generation; follow the [Isaac Lab installation guide](https://isaac-sim.github.io/IsaacLab/release/3.0.0-beta2/source/setup/installation/index.html) for the complete environment.
+The legacy external extension in this repository was validated against Isaac Lab
+`release/3.0.0-beta2`; its historical commands and Gym IDs remain unchanged. The
+separate upstream contribution is maintained against current Isaac Lab
+`develop` and consumes the model files in this repository through a portable
+review-stage asset loader. These two compatibility statements should not be
+conflated.
 
 The following versions were available for local validation on 2026-08-14:
 
@@ -136,6 +146,12 @@ Recommended asset attribution: `OneRobotics A1 robot assets © 2026 OneRobotics,
 
 ## Upstream contribution
 
-The next step is a Proposal issue asking the Isaac Lab maintainers to confirm package placement and whether the assets should move to a dedicated OneRobotics repository. No upstream directory layout, package rename, hosted asset URL, or final PR structure is assumed here.
+The public proposal is [Isaac Lab Issue #7095](https://github.com/isaac-sim/IsaacLab/issues/7095).
+The maintainer requested the asset and environment together and directed the
+Reach environment to `source/isaaclab_tasks/isaaclab_tasks/contrib/reach`.
+The contribution branch now contains the fixed-base right-arm task plus the
+hardware-team-supplied bimanual-with-stand model and task. The branch is being
+reviewed before an upstream PR is opened. Technical acceptance and NVIDIA legal
+approval of the asset are separate remaining review gates.
 
 See [`OPEN_SOURCE_PREP.md`](OPEN_SOURCE_PREP.md) for the Phase 1 audit, test results, licensing record, and the Phase 2 plan.
