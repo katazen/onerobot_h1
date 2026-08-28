@@ -6,6 +6,12 @@
 
 *OneRobotics A1 at the all-joint-zero pose in the Isaac Lab reach environment.*
 
+![OneRobotics A1 bimanual stand source model at the all-joint-zero pose](media/onerobotics-a1-bimanual-stand-zero-pose.png)
+
+*Three-view render of the published OneRobotics A1 bimanual-with-stand source
+model at the all-joint-zero pose. This CAD revision contains two 7-DoF arms and
+no gripper.*
+
 > This repository is the current external Isaac Lab implementation of the OneRobotics A1 robotic arm and is being prepared as a candidate upstream contribution to the Isaac Lab project.
 
 The repository provides an Isaac Lab articulation configuration, a manager-based end-effector reach task, RSL-RL training and playback scripts, and a MuJoCo sim-to-sim validation path. It is not an official Isaac Lab asset or task.
