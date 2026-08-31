@@ -1,0 +1,23 @@
+source/h1_reach/README.md
+  s_5991c8d49db602::t_4074177bbe8d4e 5-9
+README.md
+  s_5991c8d49db602::t_4074177bbe8d4e 97-100,205-210,217-219
+  s_5991c8d49db602::t_93d594a2c1362b 15-17,28-31,38-76
+  s_5991c8d49db602::t_4f60d34eda1ad7 77
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "ecf530911284ba0e559f7a24dc222fd8e60d31ed",
+  "prompts": {},
+  "sessions": {
+    "s_5991c8d49db602": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0558c-6d85-7e61-9a1b-743e3b2b0069",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "T1Amoo <menxlee@gmail.com>"
+    }
+  }
+}
