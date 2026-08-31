@@ -12,7 +12,9 @@
 model at the all-joint-zero pose. This CAD revision contains two 7-DoF arms and
 no gripper.*
 
-> This repository is the current external Isaac Lab implementation of the OneRobotics A1 robotic arm and is being prepared as a candidate upstream contribution to the Isaac Lab project.
+> This repository is the canonical public review source for the OneRobotics A1
+> assets consumed by the current Isaac Lab contribution. It also retains the
+> legacy external Isaac Lab extension for existing users.
 
 The repository provides an Isaac Lab articulation configuration, a manager-based end-effector reach task, RSL-RL training and playback scripts, and a MuJoCo sim-to-sim validation path. It is not an official Isaac Lab asset or task.
 
@@ -23,11 +25,55 @@ The repository provides an Isaac Lab articulation configuration, a manager-based
 - The review branch targets current Isaac Lab `develop`: robot configurations
   live in `isaaclab_assets`, while the Reach environments live under
   `isaaclab_tasks/contrib/reach` alongside the OpenArm contribution.
+- The current candidate is
+  [`T1Amoo/IsaacLab:contrib/onerobotics-a1-reach`](https://github.com/T1Amoo/IsaacLab/tree/contrib/onerobotics-a1-reach).
+  Its unimanual task mounts the standalone A1 directly on the scene-local core
+  Reach table; the table is not part of this robot asset repository.
 - The source assets in this repository are public review-stage inputs. Final
   NVIDIA legal approval and any maintainer-requested hosted-asset migration are
   still pending; no NVIDIA Nucleus path is claimed here.
 - The legacy `h1_reach` package name and `Template-A1-Reach-*` Gym IDs are intentionally retained during Phase 1 to avoid breaking existing users.
 - An authentic Isaac Lab render is included above. The underlying OneRobotics A1 model is covered by the asset license described below; third-party Isaac Lab/Isaac Sim scene elements in the screenshot remain subject to their own terms.
+
+## Current Isaac Lab contribution snapshot
+
+As of 2026-08-31, the candidate contribution is aligned as follows:
+
+| Item | Value |
+| --- | --- |
+| upstream base | `isaac-sim/IsaacLab@630317ba1ff900c120a65e705a688b9514f353a8` |
+| contribution HEAD | `T1Amoo/IsaacLab@0bdc2be11330ddd0fd952c281022c93d2b9c6dc7` |
+| ahead / behind | `7 / 0` |
+| unimanual configuration | `ONEROBOTICS_A1_UNIMANUAL_CFG` |
+| bimanual configuration | `ONEROBOTICS_A1_BIMANUAL_CFG` |
+| unimanual task | `IsaacContrib-Reach-OneRobotics-A1` |
+| bimanual task | `IsaacContrib-Reach-OneRobotics-A1-Bimanual` |
+
+The unimanual specialization inherits core Reach's scene-local static cuboid
+table, whose top is at environment-local `z=0`. The environment places the A1
+root at `(0.1, 0.0, 0.01575)` m with XYZW rotation `(0.0, 0.0, 1.0, 0.0)`.
+The `0.01575` m offset is derived from the canonical base mesh minimum Z, so the
+base has zero geometric clearance from the tabletop. No pedestal, combined
+robot/table model, or table-to-robot joint is used.
+
+This scene refinement did not change the public robot asset, robot physics,
+actuator parameters, FK, rewards, observations, actions, PPO configuration,
+target sampling, or bimanual implementation. In a deterministic 4096-target
+check, 98.5596% of Link7 targets were above or on the tabletop, so the target
+distribution was retained unchanged.
+
+Post-rebase validation passed formatting, all seven focused asset tests, both
+focused unimanual Reach tests, all three focused bimanual Reach tests, task
+discovery, and `git diff --check`. The earlier 256-environment/500-step GPU
+finite-state smokes and 256-environment/5-iteration RSL-RL integration smokes
+also passed for both tasks. They were not repeated after the final rebase
+because the intervening upstream commits did not touch the A1 runtime path;
+these are integration checks, not convergence claims.
+
+The branch is **ready for a Draft PR**, while NVIDIA legal approval and the
+final asset-hosting decision remain merge gates. No upstream PR has been opened
+and no comment has been posted to Issue #7095. See the
+[current compare view](https://github.com/isaac-sim/IsaacLab/compare/develop...T1Amoo:IsaacLab:contrib/onerobotics-a1-reach).
 
 ## Features
 
@@ -48,9 +94,10 @@ The repository provides an Isaac Lab articulation configuration, a manager-based
 The legacy external extension in this repository was validated against Isaac Lab
 `release/3.0.0-beta2`; its historical commands and Gym IDs remain unchanged. The
 separate upstream contribution is maintained against current Isaac Lab
-`develop` and consumes the model files in this repository through a portable
-review-stage asset loader. These two compatibility statements should not be
-conflated.
+`develop` and consumes the `A1_2026` model files in this repository through a
+portable review-stage asset loader. It does not import this legacy extension's
+task or actuator configuration. These two compatibility statements should not
+be conflated.
 
 The following versions were available for local validation on 2026-08-14:
 
@@ -155,14 +202,18 @@ Recommended asset attribution: `OneRobotics A1 robot assets © 2026 OneRobotics,
 The public proposal is [Isaac Lab Issue #7095](https://github.com/isaac-sim/IsaacLab/issues/7095).
 The maintainer requested the asset and environment together and directed the
 Reach environment to `source/isaaclab_tasks/isaaclab_tasks/contrib/reach`.
-The contribution branch now contains the fixed-base right-arm task plus the
-hardware-team-supplied bimanual-with-stand model and task. The branch is being
-reviewed before an upstream PR is opened. Technical acceptance and NVIDIA legal
-approval of the asset are separate remaining review gates.
+The contribution branch now contains the table-mounted fixed-base right-arm
+task plus the hardware-team-supplied bimanual-with-stand model and task. The
+table mount belongs only to the unimanual Reach scene; the canonical right-arm
+asset remains standalone. The branch is being reviewed before an upstream PR
+is opened. Technical acceptance and NVIDIA legal approval of the asset are
+separate remaining review gates.
 
 The exact source bytes used by the Isaac Lab review branch are recorded in
 [`A1_2026/SHA256SUMS`](source/h1_reach/h1_reach/assets/urdf/A1_2026/SHA256SUMS).
 This review manifest does not claim NVIDIA legal approval or a final hosted
 asset URI.
 
-See [`OPEN_SOURCE_PREP.md`](OPEN_SOURCE_PREP.md) for the Phase 1 audit, test results, licensing record, and the Phase 2 plan.
+See [`OPEN_SOURCE_PREP.md`](OPEN_SOURCE_PREP.md) for the original Phase 1 audit,
+historical test results, licensing record, and Phase 2 plan recorded on
+2026-08-14. The current contribution status is the snapshot above.
